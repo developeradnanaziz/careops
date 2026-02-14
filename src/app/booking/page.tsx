@@ -38,7 +38,7 @@ export default function Booking() {
       .eq("workspace_id", workspaceId)
       .eq("active", true)
       .order("name")
-      .then(({ data }) => {
+      .then(({ data }: { data: any }) => {
         if (data && data.length > 0) {
           setServices(data);
         } else {
