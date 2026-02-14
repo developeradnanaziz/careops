@@ -1,36 +1,192 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CareOps — Unified Operations Platform
 
-## Getting Started
+CareOps is a web-based operations platform designed to replace the chaos of disconnected tools used by service businesses. It centralizes bookings, communication, automation, forms, and inventory tracking into a single operational dashboard.
 
-First, run the development server:
+This project was built as a hackathon MVP to demonstrate a unified system where businesses can **see**, **act**, and **operate** clearly from one place.
+
+---
+
+## 🚀 Live Deployment
+
+👉 https://careops-puce.vercel.app/
+
+---
+
+## 🚀 Core Features
+
+### Workspace Onboarding
+- Business workspace creation
+- Role-based system (Owner / Staff)
+- Activation gating before system goes live
+- Configuration-first onboarding flow
+
+### Contact & CRM System
+- Public contact form (no customer login required)
+- Automatic contact creation
+- Conversation thread per contact
+- Full message history
+
+### Booking Engine
+- Public booking page
+- Service scheduling
+- Booking-to-contact linking
+- Automated confirmation flow
+
+### Inbox System
+- Single unified inbox
+- Contact-based conversation threads
+- Automation pauses when staff replies
+- System-generated messages supported
+
+### Automation Engine
+Event-driven triggers:
+- New contact → welcome message
+- Booking created → confirmation
+- Pending form reminder
+- Inventory alert
+- Staff reply → automation pause
+
+Strictly predictable logic (no hidden AI behavior)
+
+### Dashboard Analytics
+Owner dashboard displays:
+- Today’s bookings
+- Upcoming bookings
+- New inquiries
+- Pending forms
+- Unanswered messages
+- Inventory alerts
+- Operational risk indicators
+
+Each alert links directly to action pages.
+
+### Inventory Tracking
+- Resource quantity management
+- Low-stock thresholds
+- Alert banners
+- Dashboard risk visibility
+
+### Role System
+Owner:
+- Configuration control
+- Dashboard oversight
+- Staff management
+
+Staff:
+- Inbox management
+- Booking execution
+- Status updates
+- Cannot modify system logic
+
+---
+
+## 🧠 Architecture Overview
+
+CareOps follows a modular SaaS architecture:
+
+Frontend → Next.js App Router + React + Tailwind  
+Backend → Next.js server logic  
+Database → Supabase PostgreSQL  
+Auth → Supabase Authentication  
+Deployment → Vercel  
+
+The system is event-driven and relational, ensuring predictable automation and clean operational flows.
+
+Customers never log in. All external interaction happens via forms, booking pages, and automated messaging.
+
+---
+
+## 🔄 Demo Flow
+
+Contact → Booking → Automation → Inbox → Dashboard Update → Inventory Alert → Staff Action
+
+All modules are connected into a unified operations pipeline.
+
+---
+
+## 🧰 Technologies Used
+
+Frontend:
+- Next.js
+- React
+- Tailwind CSS
+
+Backend:
+- Next.js Server Actions / API Routes
+
+Database & Auth:
+- Supabase PostgreSQL
+- Supabase Authentication
+
+Deployment:
+- Vercel
+
+Architecture:
+- Event-driven automation
+- Relational data modeling
+- Modular SaaS dashboard design
+
+---
+
+## ⚙️ Steps to Run Locally
 
 ```bash
+git clone <your-repo-url>
+cd careops
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env.local` file in the root:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+NEXT_PUBLIC_SUPABASE_URL=your_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_publishable_key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Then open:
 
-## Learn More
+```
+http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌍 Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is deployed via Vercel:
 
-## Deploy on Vercel
+👉 https://careops-puce.vercel.app/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Environment variables required in Vercel:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+```
+
+After setting variables → redeploy.
+
+---
+
+## 🎯 Goal
+
+CareOps demonstrates how service businesses can replace fragmented tools with one operational system that provides visibility, automation, and control from a single dashboard.
+
+---
+
+## 🏁 Status
+
+Hackathon MVP — demo-ready prototype  
+Built to showcase architecture, flows, and product thinking.
+
+Future expansion could include:
+- advanced automation engine
+- calendar integrations
+- reporting analytics
+- AI scheduling
+- team collaboration tools
+
+---
+
+Built with focus on clarity, structure, and operational intelligence.
