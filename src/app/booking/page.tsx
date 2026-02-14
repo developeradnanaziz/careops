@@ -63,7 +63,7 @@ export default function Booking() {
     notes: "",
   });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState<false | "sent" | "skipped">(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -99,8 +99,9 @@ export default function Booking() {
 
     if (!error) {
       // 3. Send confirmation email
+      let emailSent = false;
       try {
-        await fetch("/api/send-email", {
+        const emailRes = await fetch("/api/send-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -111,6 +112,8 @@ export default function Booking() {
             service: form.service,
           }),
         });
+        const emailData = await emailRes.json();
+        emailSent = emailData.emailSent === true;
       } catch {
         // email is best-effort
       }
@@ -133,7 +136,7 @@ export default function Booking() {
         // automation is best-effort
       }
 
-      setSuccess(true);
+      setSuccess(emailSent ? "sent" : "skipped");
       setForm({ name: "", email: "", phone: "", date: "", time: "", service: "", notes: "" });
     }
 
@@ -151,7 +154,7 @@ export default function Booking() {
 
         {success && (
           <div className="bg-green-50 border border-green-200 text-green-700 rounded-lg p-3 mb-6 text-sm">
-            Booking confirmed! A confirmation email has been sent.
+            Booking confirmed!{success === "sent" ? " A confirmation email has been sent." : ""}
           </div>
         )}
 

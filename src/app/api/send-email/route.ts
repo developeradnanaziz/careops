@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     if (!RESEND_API_KEY) {
       console.log("Email skipped — no RESEND_API_KEY set.");
       console.log(`Would send to: ${to}, Name: ${name}, Date: ${date}, Time: ${time}, Service: ${service}`);
-      return NextResponse.json({ success: true, message: "Email skipped (no API key)" });
+      return NextResponse.json({ success: true, emailSent: false, message: "Email skipped (no API key)" });
     }
 
     const res = await fetch("https://api.resend.com/emails", {
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
     });
 
     const data = await res.json();
-    return NextResponse.json({ success: true, data });
+    return NextResponse.json({ success: true, emailSent: true, data });
   } catch (error) {
     console.error("Email error:", error);
     return NextResponse.json({ success: false, error: "Failed to send email" }, { status: 500 });
